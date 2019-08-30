@@ -1,0 +1,10 @@
+.apt_generated/
+.idea/
+.metadata/
+.mule/
+.settings/
+.classpath
+.factorypath
+.project
+*.iml
+target/
