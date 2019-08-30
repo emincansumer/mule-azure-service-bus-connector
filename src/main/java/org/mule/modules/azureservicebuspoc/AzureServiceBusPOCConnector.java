@@ -1,6 +1,8 @@
 package org.mule.modules.azureservicebuspoc;
 
 import org.mule.api.annotations.*;
+import org.mule.api.annotations.lifecycle.Start;
+import org.mule.api.annotations.lifecycle.Stop;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.RefOnly;
 import org.mule.api.callback.SourceCallback;
@@ -27,6 +29,16 @@ public class AzureServiceBusPOCConnector {
     public void addMessage(String queue, @Default("#[payload]") @RefOnly final String message) throws Exception {
         LOG.info("Sending new message to the queue: " + queue);
         connectionManagement.addMessageToQueue(queue, message);
+    }
+
+    @Start
+    public void onStart() {
+        LOG.info("AzureServiceBusPOCConnector onStart called.");
+    }
+
+    @Stop
+    public void onStop() {
+        LOG.info("AzureServiceBusPOCConnector onStop called.");
     }
 
     public AzureConnectionManagement getConnectionManagement() {
