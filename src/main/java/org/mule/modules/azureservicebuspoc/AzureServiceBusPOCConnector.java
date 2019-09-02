@@ -31,6 +31,11 @@ public class AzureServiceBusPOCConnector {
         connectionManagement.addMessageToQueue(queue, message);
     }
 
+    @Processor
+    public void acknowledgeMessage(@Default("#[payload]") @RefOnly final String message) throws Exception {
+        // Method template for acknowledgeMessage operation
+    }
+
     @Start
     public void onStart() {
         LOG.info("AzureServiceBusPOCConnector onStart called.");
